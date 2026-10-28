@@ -1,0 +1,60 @@
+﻿@model Practical8.Models.Product
+
+@{
+    ViewBag.Title = "Add New Product";
+}
+
+<h2>Add New Product</h2>
+
+@using (Html.BeginForm("Create", "Product", FormMethod.Post))
+{
+    @Html.AntiForgeryToken()
+
+    <div>
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+    </div>
+
+    <div>
+        @Html.LabelFor(m => m.ProductId, "Product ID")
+        <br />
+        @Html.TextBoxFor(m => m.ProductId, new { @class = "form-control" })
+        <br />
+        @Html.ValidationMessageFor(m => m.ProductId, "", new { @class = "text-danger" })
+    </div>
+
+    <br />
+
+    <div>
+        @Html.LabelFor(m => m.ProductName, "Product Name")
+        <br />
+        @Html.TextBoxFor(m => m.ProductName, new { @class = "form-control" })
+        <br />
+        @Html.ValidationMessageFor(m => m.ProductName, "", new { @class = "text-danger" })
+    </div>
+
+    <br />
+
+    <div>
+        @Html.LabelFor(m => m.Quantity, "Quantity")
+        <br />
+        @Html.TextBoxFor(m => m.Quantity, new { @class = "form-control", type = "number" })
+        <br />
+        @Html.ValidationMessageFor(m => m.Quantity, "", new { @class = "text-danger" })
+    </div>
+
+    <br />
+
+    <div>
+        @Html.LabelFor(m => m.Price, "Price")
+        <br />
+        @Html.TextBoxFor(m => m.Price, new { @class = "form-control", type = "number", step = "0.01", lang = "en-US" })
+        <br />
+        @Html.ValidationMessageFor(m => m.Price, "", new { @class = "text-danger" })
+    </div>
+
+    <br />
+
+    <button type="submit">Save Product</button>
+
+    @Html.ActionLink("Back to Product List", "Index", "Product")
+}

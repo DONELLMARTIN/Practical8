@@ -1,0 +1,60 @@
+﻿@model Practical8.Models.Product
+
+@{
+    ViewBag.Title = "Edit Product";
+}
+
+<h2>Edit Product</h2>
+
+@using (Html.BeginForm("Edit", "Product", FormMethod.Post))
+{
+    @Html.AntiForgeryToken()
+
+    @Html.HiddenFor(model => model.ProductId)
+
+    <div>
+        @Html.LabelFor(model => model.ProductName, "Product Name")
+        <br />
+        @Html.TextBoxFor(model => model.ProductName,
+            new { @class = "form-control" })
+        @Html.ValidationMessageFor(model => model.ProductName,
+            "", new { @class = "text-danger" })
+    </div>
+
+    <br />
+
+    <div>
+        @Html.LabelFor(model => model.Quantity, "Quantity")
+        <br />
+        @Html.TextBoxFor(model => model.Quantity,
+            new { @class = "form-control", type = "number", min = "0" })
+        @Html.ValidationMessageFor(model => model.Quantity,
+            "", new { @class = "text-danger" })
+    </div>
+
+    <br />
+
+    <div>
+        @Html.LabelFor(model => model.Price, "Price")
+        <br />
+        @Html.TextBoxFor(model => model.Price,
+            new
+                 {
+                     @class = "form-control",
+                     type = "number",
+                  step = "0.01",
+                     min = "0.01"
+                 })
+        @Html.ValidationMessageFor(model => model.Price,
+            "", new { @class = "text-danger" })
+    </div>
+
+    <br />
+
+    <button type="submit">Save Changes</button>
+
+    <br />
+    <br />
+
+    @Html.ActionLink("Back to Product List", "Index", "Product")
+}
